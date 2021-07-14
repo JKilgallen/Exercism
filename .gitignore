@@ -1,2 +1,6 @@
 .*/
 _*/
+bin/
+build/
+.*
+build.gradle
