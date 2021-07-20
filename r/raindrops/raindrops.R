@@ -1,16 +1,11 @@
 raindrops <- function(number) {
-  sound = ""
-  if (number %% 3 == 0) {
-    sound <- "Pling"
+  sounds <- c("Pling", "Plang", "Plong")
+  vec <- number %% c(3,5,7) == 0
+  if (any(vec)) {
+    paste(sounds[vec], collapse = "")
+  } else {
+    toString(number)
   }
-  if (number %% 5 == 0) {
-    sound <- paste(sound, "Plang", sep='')
-  }
-  if (number %% 7 == 0) {
-    sound <- paste(sound, "Plong", sep='')
-  }
-  if (nchar(sound) == 0) {
-    sound <- as.character(number)
-  }
-  sound
+
 }
+
