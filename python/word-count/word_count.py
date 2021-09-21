@@ -1,8 +1,8 @@
 import re
 from collections import Counter
 
-punctuation = '!"#$%&()*+,-./:;<=>?@[\\]^_`{|}~'
+word_finder = re.compile(r"\b([A-z0-9']+)\b")
 
 def count_words(sentence):
-    sentence = re.sub(',|_', ' ', sentence)
-    return Counter(''.join(re.findall(r"(\w+'\w+?|[\w\d\s])?",sentence.lower())).split())
+    sentence = re.sub(',|_', ' ', sentence).lower()
+    return Counter(re.findall(word_finder, sentence))
