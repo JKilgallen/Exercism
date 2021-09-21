@@ -20,17 +20,15 @@ UNEQUAL = "UNEQUAL"
 
 
 def sublist(list_one, list_two):
-    if is_suplist(list_one, list_two) and is_suplist(list_two, list_one):
+    if list_one == list_two:
         return EQUAL
-    elif is_suplist(list_one, list_two):
+    elif list_two in get_cuts(list_one, len(list_two)):
         return SUPERLIST
-    elif is_suplist(list_two, list_one):
+    elif list_one in get_cuts(list_two, len(list_one)):
         return SUBLIST
-    elif not (list_one or list_two):
-        return EQUAL
     else:
         return UNEQUAL
 
-def is_suplist(l1, l2):
-    if any([l2 == l1[i:i+len(l2)] for i in range(len(l1))]):
-        return True
+def get_cuts(l1, n):
+    """This method returns all cuts from a list of length n."""
+    return [l1[i:i+n] for i in range(len(l1))]
